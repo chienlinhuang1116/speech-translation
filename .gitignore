@@ -24,7 +24,9 @@ egs/must_c/st_multilingual/test.sh
 egs/must_c/st_multilingual/check.py
 egs/must_c/st_multilingual/conf/tuning/*
 *.vscode
-egs/must_c/st_multilingual/_NOTES_draft.md
+egs/must_c/st_multilingual/slurm/*
+egs/must_c/st_multilingual/tools/*
+egs/must_c/st_multilingual/_*.md
 egs/must_c/st_multilingual/print_params.py
 egs/must_c/st_multilingual/correct_json.py
 egs/must_c/st_multilingual/run-toto.slurm
@@ -34,3 +36,7 @@ egs/must_c/st_multilingual/wt_download.sh
 egs/must_c/st_multilingual/report.py
 egs/must_c/st_multilingual/_TEX.md
 egs/must_c/st_multilingual/submit_cpu_toto.slurm
+egs/must_c/st_multilingual/*.slurm
+egs/must_c/st_multilingual/conf/_*
+egs/europarl_st
+egs/europarl_st/*
