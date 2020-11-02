@@ -1,15 +1,30 @@
-# Multilingual Speech Translation
+# Dual-decoder Transformer for Joint Automatic Speech Recognition and Multilingual Speech Translation
 
-This is our fork of ESPNet. Code for multilingual speech translation can be found in `egs/must_c/st_multilingual`.
+This is the codebase for the paper *Dual-decoder Transformer for Joint Automatic Speech Recognition and Multilingual Speech Translation*.
 
-<!-- # Table of Contents
+# Table of Contents
 
-1. [Install necessary packages](#1.-install-necessary-packages) -->
-<!-- 2. [Train multilingual models](#2.-train-multilingual-models)
-3. [Decode multilingual models](#3.-decode-multilingual-models) -->
+1. [Pre-trained models](#1.-pretrained-models)
+2. [Install dependencies](#2.-install-dependencies)
+3. [Prepare data](#2.-prepare-data)
+4. [Train models](#3.-train-models)
+5. [Decode models](#3.-decode-models)
 
 
-## 1. Dependencies
+## 1. Pre-trained models
+
+| No  |  type | side  | self  | src  | merge | epochs | de | es | fr | it | nl | pt | ro | ru | avg | BLEU | Link |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 2 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 3 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 4 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 5 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 6 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+| 7 |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+
+
+## 2. Install dependencies
 
 You will need PyTorch, Kaldi, and ESPNet. **In the sequel, it is assumed that
 you are already inside a virtual environment** with PyTorch installed (together with necessary standard

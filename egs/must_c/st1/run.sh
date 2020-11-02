@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Modified by Hang Le (hangtp.le@gmail.com)
+# Original copyright is appended below
+#
 # Copyright 2019 Kyoto University (Hirofumi Inaguma)
-#  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+# Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 
 . ./path.sh || exit 1;
 . ./cmd.sh || exit 1;
@@ -22,11 +25,11 @@ seed=1          # seed to generate random number
 do_delta=false
 
 preprocess_config=
-train_config=conf/train.yaml
-decode_config=conf/decode.yaml
+train_config=
+decode_config=
 
 # decoding parameter
-trans_model=model.acc.best # set a model to be used for decoding: 'model.acc.best' or 'model.loss.best'
+trans_model=model.acc.best   # set a model to be used for decoding: 'model.acc.best' or 'model.loss.best'
 
 # model average realted (only for transformer)
 n_average=5                  # the number of ST models to be averaged
@@ -46,14 +49,13 @@ tgt_case=tc
 
 # Set this to somewhere where you want to put your data, or where
 # someone else has already put it.
-must_c=/n/rd11/corpora_8/MUSTC_v1.0
+must_c=
 
 # target language related
-tgt_lang=de
+tgt_lang=de_es_fr_it_nl_pt_ro_ru
 # you can choose from de, es, fr, it, nl, pt, ro, ru
 # if you want to train the multilingual model, segment languages with _ as follows:
 # e.g., tgt_lang="de_es_fr"
-# if you want to use all languages, set tgt_lang="all"
 
 # bpemode (unigram or bpe)
 nbpe=8000
@@ -74,8 +76,7 @@ train_set=train_sp.en-${tgt_lang}.${tgt_lang}
 train_dev=dev.en-${tgt_lang}.${tgt_lang}
 trans_set=""
 for lang in $(echo ${tgt_lang} | tr '_' ' '); do
-    # trans_set="${trans_set} tst-COMMON.en-${lang}.${lang} tst-HE.en-${lang}.${lang}"
-    trans_set="train_sp.en-${lang}.${lang}" # for debug
+    trans_set="${trans_set} tst-COMMON.en-${lang}.${lang} tst-HE.en-${lang}.${lang}"
 done
 
 if [ ${stage} -le -1 ] && [ ${stop_stage} -ge -1 ]; then
