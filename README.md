@@ -116,12 +116,9 @@ git clone https://github.com/moses-smt/mosesdecoder.git
 bash run.sh --stage 0 \
             --stop-stage 2 \
             --ngpu 0 \
-            --nj ${nj} \
             --must-c ${must_c}
 ```
-where 
-- `nj`: the number of threads to be used for preprocessing,
-- `must_c`: directory where you save raw MuST-C data.
+where `must_c` is directory where you save raw MuST-C data.
 
 2. Create symlinks so that the processed data is saved in the required strutured for training.
 ```bash

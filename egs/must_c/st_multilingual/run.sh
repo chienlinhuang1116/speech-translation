@@ -189,7 +189,7 @@ if [[ ${stage} -le 1 ]] && [[ ${stop_stage} -ge 1 ]]; then
         feat_dt_dir_lg=${dumpdir}/${train_dev_lg}/delta${do_delta}; mkdir -p ${feat_dt_dir_lg}
         
         for x in train.en-${lang} dev.en-${lang} tst-COMMON.en-${lang} tst-HE.en-${lang}; do
-            steps/make_fbank_pitch.sh --cmd "$train_cmd" --nj ${nj} --write_utt2num_frames true \
+            steps/make_fbank_pitch.sh --cmd "$train_cmd" --nj 32 --write_utt2num_frames true \
                 data/${x} exp/make_fbank/${x} ${fbankdir}
         done
 
@@ -201,7 +201,7 @@ if [[ ${stage} -le 1 ]] && [[ ${stop_stage} -ge 1 ]]; then
         utils/combine_data.sh --extra-files utt2uniq data/train_sp.en-${lang} \
             data/temp1.${lang} data/temp2.${lang} data/temp3.${lang}
         rm -r data/temp1.${lang} data/temp2.${lang} data/temp3.${lang}
-        steps/make_fbank_pitch.sh --cmd "$train_cmd" --nj ${nj} --write_utt2num_frames true \
+        steps/make_fbank_pitch.sh --cmd "$train_cmd" --nj 32 --write_utt2num_frames true \
             data/train_sp.en-${lang} exp/make_fbank/train_sp.en-${lang} ${fbankdir}
 
         for lg in en ${lang}; do
@@ -259,15 +259,15 @@ if [[ ${stage} -le 1 ]] && [[ ${stop_stage} -ge 1 ]]; then
             ${feat_dt_dir_lg}/storage
         fi
 
-        dump.sh --cmd "$train_cmd" --nj ${nj} --do_delta $do_delta \
+        dump.sh --cmd "$train_cmd" --nj 80 --do_delta $do_delta \
             data/${train_set_lg}/feats.scp data/${train_set_lg}/cmvn.ark exp/dump_feats/${train_set_lg} ${feat_tr_dir_lg}
-        dump.sh --cmd "$train_cmd" --nj ${nj} --do_delta $do_delta \
+        dump.sh --cmd "$train_cmd" --nj 32 --do_delta $do_delta \
             data/${train_dev_lg}/feats.scp data/${train_set_lg}/cmvn.ark exp/dump_feats/${train_dev_lg} ${feat_dt_dir_lg}
 
         trans_set_lg="tst-COMMON.en-${lang}.${lang} tst-HE.en-${lang}.${lang}"
         for ttask in ${trans_set_lg}; do
             feat_trans_dir=${dumpdir}/${ttask}/delta${do_delta}; mkdir -p ${feat_trans_dir}
-            dump.sh --cmd "$train_cmd" --nj ${nj} --do_delta $do_delta \
+            dump.sh --cmd "$train_cmd" --nj 32 --do_delta $do_delta \
                 data/${ttask}/feats.scp data/${ttask}/cmvn.ark exp/dump_feats/trans/${ttask} ${feat_trans_dir}
         done
 
@@ -342,7 +342,7 @@ if [[ ${stage} -le 2 ]] && [[ ${stop_stage} -ge 2 ]]; then
         feat_dt_dir_lg=${dumpdir}/${train_dev_lg}/delta${do_delta}
         jname=data-en-${lang}_${bpemode}${nbpe}.${tgt_case}${suffix}.json
 
-        data2json.sh --nj ${nj} --feat ${feat_tr_dir_lg}/feats.scp \
+        data2json.sh --nj 16 --feat ${feat_tr_dir_lg}/feats.scp \
                         --text data/${train_set_lg}/text.${tgt_case} \
                         --bpecode ${bpemodel}.model --lang ${lang} \
                         data/${train_set_lg} ${dict} > ${feat_tr_dir_lg}/${jname}
