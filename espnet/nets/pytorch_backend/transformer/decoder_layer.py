@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Modified by Hang Le (hangtp.le@gmail.com)
+# Original copyright is appended below
+#
 # Copyright 2019 Shigeki Karita
 #  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 
-"""Decoder self-attention layer definition."""
+"""Cross decoder self-attention layer definition."""
 import logging
 import torch
 from torch import nn

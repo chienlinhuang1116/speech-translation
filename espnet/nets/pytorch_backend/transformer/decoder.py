@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Modified by Hang Le (hangtp.le@gmail.com)
+# Original copyright is appended below
+#
 # Copyright 2019 Shigeki Karita
 #  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 
-"""Decoder definition."""
+"""Cross-decoder definition."""
 
 import torch
 
@@ -83,7 +86,6 @@ class Decoder(ScorerInterface, torch.nn.Module):
         cross_src_attn = None
         if cross_operator:
             if 'src_' in cross_operator:
-                # cross_src_attn = MultiHeadedAttention(attention_heads, attention_dim, self_attention_dropout_rate)
                 cross_src_attn = True
 
             if 'self_' in cross_operator:
@@ -91,7 +93,6 @@ class Decoder(ScorerInterface, torch.nn.Module):
                     # cross_self_attn = cross_src_attn
                     cross_self_attn = True # TODO: backward compatibility for shared self and source
                 else:
-                    # cross_self_attn = MultiHeadedAttention(attention_heads, attention_dim, self_attention_dropout_rate)
                     cross_self_attn = True
             if 'concat' in cross_operator:
                 cross_operator = 'concat'

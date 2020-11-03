@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Copyright 2019 Shigeki Karita
-#  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+# Copyright 2020 Hang Le
+# hangtp.le@gmail.com
 
-"""Decoder definition."""
+"""Dual-decoder definition."""
 
 import torch
 

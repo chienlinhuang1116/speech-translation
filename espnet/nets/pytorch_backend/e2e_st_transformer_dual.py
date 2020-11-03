@@ -1,3 +1,6 @@
+# Modified by Hang Le (hangtp.le@gmail.com)
+# Original copyright is appended below
+#
 # Copyright 2019 Hirofumi Inaguma
 #  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 

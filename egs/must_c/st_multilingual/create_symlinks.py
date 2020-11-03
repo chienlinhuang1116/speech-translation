@@ -1,3 +1,7 @@
+"""
+Copyright 2020 Hang Le (hangtp.le@gmail.com)
+"""
+
 import os
 import re
 import shutil
@@ -6,15 +10,9 @@ import subprocess
 import argparse
 
 
-def get_info(tgt_langs="de_es_fr_it_nl_pt_ro_ru"):
+def get_info(tgt_langs="de_es_fr_it_nl_pt_ro_ru", suffix=""):
     pairs = ['en-'+ l for l in tgt_langs.split('_')]
     splits = ['train_sp', 'dev', 'tst-COMMON', 'tst-HE']
-    if len(pairs) == 8:
-        suffix = '_v2'
-    elif len(pairs) == 2:
-        suffix = '_v2.1'
-    else: 
-        suffix = ''
     return pairs, splits, suffix
 
 
@@ -73,6 +71,7 @@ def main():
 
     create_data_links_jsons(args.input_dir, args.output_dir, tgt_langs=args.tgt_langs)
     create_data_links_dicts(args.input_dir_dict, args.output_dir, tgt_langs=args.tgt_langs)
+
 
 if __name__ == "__main__":
     main()

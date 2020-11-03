@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
+# Modified by Hang Le (hangtp.le@gmail.com)
+# Original copyright is appended below
+#
 # Copyright 2019 Kyoto University (Hirofumi Inaguma)
 #  Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
 
@@ -23,19 +26,6 @@ from espnet.utils.cli_utils import strtobool
 from espnet.utils.training.batchfy import BATCH_COUNT_CHOICES
 
 is_torch_1_2_plus = LooseVersion(torch.__version__) >= LooseVersion('1.2')
-
-
-# import traceback
-# import warnings
-# import sys
-
-# def warn_with_traceback(message, category, filename, lineno, file=None, line=None):
-
-#     log = file if hasattr(file,'write') else sys.stderr
-#     traceback.print_stack(file=log)
-#     log.write(warnings.formatwarning(message, category, filename, lineno, line))
-
-# warnings.showwarning = warn_with_traceback
 
 
 # NOTE: you need this func to generate our sphinx doc
@@ -213,14 +203,16 @@ def get_parser(parser=None, required=True):
     parser.add_argument('--replace-sos', default=False, type=strtobool,
                         help='Replace <sos> in the decoder with a target language ID \
                               (the first token in the target sequence)')
-    # Multilingual related: added by Hang Le
+    # One-to-many
     parser.add_argument('--lang-pairs', type=str,
-                        help='Comma-seperated list of langage pairs for one-to-many system. For example: en-de,en-fr,en-nl')
-    parser.add_argument('--lang-tok', choices=['encoder-pre-sum', 'decoder-pre'], default=None, type=str,
+                        help='Comma-seperated list of langage pairs for one-to-many system. \
+                            For example: en-de,en-fr,en-nl')
+    parser.add_argument('--lang-tok', choices=['encoder-pre-sum', 'decoder-pre'], 
+                        default=None, type=str,
                         help='Language token added in the source')
     parser.add_argument('--num-decoders', choices=[1, 2], default=2, type=int,
                         help='Number of decoders in multilingual ST.')
-    # CROSS ATTENTION
+    # Dual-attention
     parser.add_argument('--cross-weight', default=0.0, type=float,
                         help='Weight decay ratio')
     parser.add_argument('--cross-weight-learnable', default=False, type=strtobool,
@@ -230,18 +222,26 @@ def get_parser(parser=None, required=True):
     parser.add_argument('--cross-src', default=False, type=strtobool,
                         help='Plug the cross attention to the source attention.')
     parser.add_argument('--cross-to-asr', type=strtobool, default=False,
-                        help='Enable cross attention for the ASR decoder i.e. ASR decoder attends to ST decoder.')
+                        help='Enable cross attention for the ASR decoder \
+                            i.e. ASR decoder attends to ST decoder.')
     parser.add_argument('--cross-to-st', type=strtobool, default=False,
-                        help='Enable cross attention for the ST decoder i.e. ST decoder attends to ASR decoder.')
-    parser.add_argument('--cross-operator', default=None, type=str, choices=['sum', 'concat', 'self_sum', 'self_concat', 'src_sum', 'src_concat', 'self_src_sum', 'self_src_concat'],
-                        help='Operator in the cross attention module: whether to sum or concatenate self and cross attention.')
+                        help='Enable cross attention for the ST decoder \
+                            i.e. ST decoder attends to ASR decoder.')
+    parser.add_argument('--cross-operator', default=None, type=str, 
+                        choices=['sum', 'concat', 
+                                'self_sum', 'self_concat', 
+                                'src_sum', 'src_concat', 
+                                'self_src_sum', 'self_src_concat'],
+                        help='Operator in the cross attention module')
     parser.add_argument('--wait-k-asr', default=0, type=int,
                         help='ASR decoder is k steps ahead of ST decoder.')
     parser.add_argument('--wait-k-st', default=0, type=int,
                         help='ST decoder is k steps ahead of ASR decoder.')
-    parser.add_argument('--cross-src-from', default='embedding', type=str, choices=['embedding', 'before-self', 'before-src'],
+    parser.add_argument('--cross-src-from', default='embedding', type=str, 
+                        choices=['embedding', 'before-self', 'before-src'],
                         help='Where to take key and value of the cross decoder.')
-    parser.add_argument('--cross-self-from', default='embedding', type=str, choices=['embedding', 'before-self'],
+    parser.add_argument('--cross-self-from', default='embedding', type=str, 
+                        choices=['embedding', 'before-self'],
                         help='Where to take key and value of the cross decoder.')
     parser.add_argument('--cross-shared', default=False, type=strtobool,
                         help='Cross shared weights.')    
@@ -267,7 +267,7 @@ def get_parser(parser=None, required=True):
     parser.add_argument('--fbank-fmax', type=float, default=None,
                         help='')
     # Other param
-    parser.add_argument('--time-limit', type=float, default=20.0,
+    parser.add_argument('--time-limit', type=float, default=100.0,
                         help='Time limit for each job in hours.')     
     return parser
 
@@ -299,7 +299,6 @@ def main(cmd_args):
         model_module = args.model_module
     model_class = dynamic_import(model_module)
     model_class.add_arguments(parser)
-    print(f'model_class: {model_class}')
 
     args = parser.parse_args(cmd_args)
     args.start_time = time.time()
