@@ -1,3 +1,4 @@
+.gitignore
 egs/must_c/_NOTES.md
 *.DS_Store
 .vscode/.ropeproject/objectdb
