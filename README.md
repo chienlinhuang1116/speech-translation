@@ -17,15 +17,15 @@ This is the codebase for the paper *Dual-decoder Transformer for Joint Automatic
 
 ## 1. Pre-trained models
 
-| No  |  type | side  | self  | src  | merge | epochs | de | es | fr | it | nl | pt | ro | ru | avg | BLEU | Link |
+| Link  |  type | side  | self  | src  | merge | epochs | avg BLEU | WER | de | es | fr | it | nl | pt | ro | ru |
 |---|:---|:---|:---|:---|:---|:---|:---|:---|---|---|---|---|---|---|---|---|---|
-| 1 | Inaguma et al. [1]||||| 50 | 22.91 | 27.96 | 32.69 | 23.75 | 27.43 | 28.01 | 21.90 | **15.75** | 25.05 | 12.0 | - |
-| 2 | Gangi et al. [2]|||||  | 17.70 | 20.90 | 26.50 | 18.00 | 20.00 | 22.60 | - | - | - | - | - |
-| 3 | Gangi et al. [2]|||||  | 16.50 | 18.90 | 24.50 | 16.20 | 17.80 | 20.80 | 15.90 | 9.80 | 17.55 | - | - |
-| 4 | `independent++` ||||| 25 | 22.82 |27.20 |32.11 |23.34 |26.67 |28.98 |21.37 |14.34 |24.60 | 11.6 |
-| 5 | `par++` | `both` | - | :heavy_check_mark: | `sum` | 25 | **23.63** |**28.12** |**33.45** |**24.18** |**27.55** |**29.95** |**22.87** |15.21 |**25.62** | **11.4** |
-| 6 | `par` | `both` | :heavy_check_mark: | :heavy_check_mark: | `concat` | 25 | 22.74 |27.59 |32.86 |23.50 |26.97 |29.51 |21.94 |14.88 |25.00 | 11.6 |      
-| 7 | `par`<sup>`R3`</sup> | `both` | - | :heavy_check_mark: | `sum` | 25 | 22.84 |27.92 |32.12 |23.61 |27.29 |29.48 |21.16 |14.50 |24.87 | 11.6 |
+| - | Inaguma et al. [1]||||| 50 | 25.05 | 12.0 | 22.91 | 27.96 | 32.69 | 23.75 | 27.43 | 28.01 | 21.90 | **15.75** |
+| - | Gangi et al. [2]|||||  | - | - | 17.70 | 20.90 | 26.50 | 18.00 | 20.00 | 22.60 | - | - |
+| - | Gangi et al. [2]|||||  | 17.55 | - | 16.50 | 18.90 | 24.50 | 16.20 | 17.80 | 20.80 | 15.90 | 9.80 |
+| https://we.tl/t-38QXoen2D6 | `independent++` ||||| 25 | 24.60 | 11.6 | 22.82 |27.20 |32.11 |23.34 |26.67 |28.98 |21.37 |14.34 |
+| https://we.tl/t-gBv0c2N1ei | `par++` | `both` | - | :heavy_check_mark: | `sum` | 25 | **25.62** | **11.4**|**23.63** |**28.12** |**33.45** |**24.18** |**27.55** |**29.95** |**22.87** |15.21 |
+| https://we.tl/t-EjiDcuANFV | `par` | `both` | :heavy_check_mark: | :heavy_check_mark: | `concat` | 25 | 25.00 | 11.6 | 22.74 |27.59 |32.86 |23.50 |26.97 |29.51 |21.94 |14.88 |    
+| https://we.tl/t-dJYCXDu3fK | `par`<sup>`R3`</sup> | `both` | - | :heavy_check_mark: | `sum` | 25 | 24.87 | 11.6 | 22.84 |27.92 |32.12 |23.61 |27.29 |29.48 |21.16 |14.50 |
 
 [1] Inaguma et al., 2020. Espnet-st: All-in-one speech translation toolkit. (Bilingual one-to-one models)
 
