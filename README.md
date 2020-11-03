@@ -209,4 +209,4 @@ If you find the resources in this repository useful, please cite the following p
 }
 ```
 
-This repo is a fork of [ESPNet](https://github.com/espnet/espnet). You should consider citing their articles as well if you use this code. 
+This repo is a fork of [ESPNet](https://github.com/espnet/espnet). You should consider citing their papers as well if you use this code. 
