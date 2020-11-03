@@ -277,10 +277,11 @@ fi
 
 
 # Dictionary related
-dict=data/lang_1spm/${train_set}_${bpemode}${nbpe}_${tgt_case}${suffix}.txt
+dname=${train_set}_${bpemode}${nbpe}_${tgt_case}${suffix}
+dict=data/lang_1spm/${dname}.txt
 nlsyms=data/lang_1spm/${train_set}_non_lang_syms_${tgt_case}${suffix}.txt
 nlsyms_tmp=data/lang_1spm/${train_set}_non_lang_syms_${tgt_case}_tmp${suffix}.txt
-bpemodel=data/lang_1spm/${train_set}_${bpemode}${nbpe}_${tgt_case}${suffix}
+bpemodel=data/lang_1spm/${dname}
 echo "| bpe model: ${bpemodel}"
 if [[ ${stage} -le 2 ]] && [[ ${stop_stage} -ge 2 ]]; then
     ### Task dependent. You have to check non-linguistic symbols used in the corpus.
@@ -375,7 +376,7 @@ fi
 # Data input folders
 train_json_dir=${datadir}/train_sp
 val_json_dir=${datadir}/dev
-dict=${datadir}/lang_1spm/${train_set}_${bpemode}${nbpe}_${tgt_case}${suffix}.txt
+dict=${datadir}/lang_1spm/${dname}.txt
 echo "| train_json_dir: ${train_json_dir}"
 echo "| val_json_dir: ${val_json_dir}"
 echo "| dictionary: ${dict}"

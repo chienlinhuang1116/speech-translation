@@ -48,7 +48,7 @@ def create_data_links_dicts(input_dir_dict, output_dir, tgt_langs="de_es_fr_it_n
     output_dir = os.path.join(output_dir, tgt_langs, 'lang_1spm')
     os.makedirs(output_dir, exist_ok=True)
 
-    fname = f'train_sp.en-{tgt_langs}.{tgt_langs}_bpe8000_units_tc{suffix}.txt'
+    fname = f'train_sp.en-{tgt_langs}_bpe8000_tc{suffix}.txt'
     ip = os.path.join(input_dir_dict, fname)
     op = os.path.join(output_dir, fname)
     print('{} -> {}'.format(ip, op))
