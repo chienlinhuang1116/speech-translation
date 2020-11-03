@@ -7,16 +7,16 @@ This is the codebase for the paper *Dual-decoder Transformer for Joint Automatic
 
 # Table of Contents
 
-1. [Pre-trained models](#1.-pretrained-models)
-2. [Dependencies](#2.-dependencies)
-3. [Data preparation](#3.-data-preparation)
-4. [Training](#4.-training)
-5. [Decoding](#5.-decoding)
-6. [References](#5.-references)
+1. [Pre-trained models](#1-pre-trained-models)
+2. [Dependencies](#2-dependencies)
+3. [Data preparation](#3-data-preparation)
+4. [Training](#4-training)
+5. [Decoding](#5-decoding)
+6. [References](#6-references)
 
 
 ## 1. Pre-trained models
-Pre-trained models are available for download in the links below. To replicate the results, please follow [Section 5 Decoding](#5.-decoding).
+Pre-trained models are available for download in the links below. To replicate the results, please follow [Section 5 Decoding](#5-decoding).
 
 |   |  type | side  | self  | src  | merge | epochs |  WER | BLEU | de | es | fr | it | nl | pt | ro | ru |
 |---|:---|:---|:---|:---|:---|:---|:---|---|---|---|---|---|---|---|---|---|
