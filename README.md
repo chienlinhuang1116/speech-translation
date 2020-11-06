@@ -1,6 +1,6 @@
 # Dual-decoder Transformer for Joint Automatic Speech Recognition and Multilingual Speech Translation
 
-This is the codebase for the paper *Dual-decoder Transformer for Joint Automatic Speech Recognition and Multilingual Speech Translation* (COLING 2020, Oral presentation). 
+This is the codebase for the paper [*Dual-decoder Transformer for Joint Automatic Speech Recognition and Multilingual Speech Translation*](https://arxiv.org/abs/2011.00747) (COLING 2020, Oral presentation). 
 
 # News
 - 02/11/2020: First release, with training recipes and pre-trained models.
